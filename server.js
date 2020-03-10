@@ -31,7 +31,6 @@ app.post("/api/todoList", async(req, res) => {
 })
 
 
-
 app.get("/api/todoList", async(req, res) =>{
   const todoList = await Todo.find({});
   res.json(todoList); 
