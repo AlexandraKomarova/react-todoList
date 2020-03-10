@@ -19,8 +19,22 @@ mongoose.connect(
   { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }
 )
 
-app.get("/api/todoList", (req, res) =>{
-  res.send("hello world")
+
+const Todo = mongoose.model('todo', new mongoose.Schema(
+  { name: 'string' }
+  ));
+
+
+app.post("/api/todoList", async(req, res) => {
+  const todo = await Todo.create({name: req.body.name})
+  res.json(todo); 
+})
+
+
+
+app.get("/api/todoList", async(req, res) =>{
+  const todoList = await Todo.find({});
+  res.json(todoList); 
 })
 
 
